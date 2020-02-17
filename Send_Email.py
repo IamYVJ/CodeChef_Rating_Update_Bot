@@ -2,6 +2,7 @@ import smtplib
 import email.message
 
 def sendEmail(username, data):
+    print("D", data)
     message = """Hey {user}! <br> <br>
                 Your CodeChef Ratings have been updated. <br> <br>
                 Your CodeChef Rating has changed to <b> {rating_new} </b> from {rating_old}. <br> 
@@ -9,10 +10,10 @@ def sendEmail(username, data):
                 Thank you. <br> <br>
                 Sincerely, <br>
                 <b>YVJ Systems</b>""".format( user=username, 
-                                            rating_new = data[2],
-                                            rating_old = data[0],
-                                            junior_new = data[3],
-                                            junior_old = data[1] )
+                                            rating_new = data[0],
+                                            rating_old = data[2],
+                                            junior_new = data[1],
+                                            junior_old = data[3] )
     # message = message.encode('utf-8').strip()
     msg = email.message.Message()
     msg['Subject'] = 'CodeChef Rating Update - YVJ Systems'
@@ -28,4 +29,4 @@ def sendEmail(username, data):
     s.sendmail(msg['From'], [msg['To']], msg.as_string())
     s.quit()
 
-sendEmail("YVJ", [1,2,3,4])
+# sendEmail("YVJ", [1,2,3,4])

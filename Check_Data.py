@@ -19,7 +19,7 @@ def check_Data(username):
         file = open(path, "r")
     except:
         return False
-    finally:
+    else:
         data = []
         data.append(file.readline())
         data.append(file.readline())
