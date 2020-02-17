@@ -2,7 +2,6 @@ import smtplib
 import email.message
 
 def sendEmail(username, data, email_ID, sender_email_ID, sender_email_ID_password):
-    print("D", data)
     message = """Hey {user}! <br> <br>
                 Your CodeChef Ratings have been updated. <br> <br>
                 Your CodeChef Rating has changed to <b> {rating_new} </b> from {rating_old}. <br> 
