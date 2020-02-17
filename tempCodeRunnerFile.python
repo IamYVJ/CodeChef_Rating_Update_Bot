@@ -1,5 +1,6 @@
-import requests
+email_ID = "yvj"
 
-url = 'https://www.codechef.com/users/yvj1809'
-r = requests.get(url)
-print(r.text.find("1541"))
+def return_email_ID():
+    print(email_ID)
+
+return_email_ID()

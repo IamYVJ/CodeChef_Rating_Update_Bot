@@ -1,7 +1,7 @@
 import smtplib
 import email.message
 
-def sendEmail(username, data):
+def sendEmail(username, data, email_ID, sender_email_ID, sender_email_ID_password):
     print("D", data)
     message = """Hey {user}! <br> <br>
                 Your CodeChef Ratings have been updated. <br> <br>
@@ -14,19 +14,17 @@ def sendEmail(username, data):
                                             rating_old = data[2],
                                             junior_new = data[1],
                                             junior_old = data[3] )
-    # message = message.encode('utf-8').strip()
+    
     msg = email.message.Message()
     msg['Subject'] = 'CodeChef Rating Update - YVJ Systems'
-    msg['From'] = "systems.quadcore@gmail.com"
-    msg['To'] = "yashvardhan.jain_ug21@ashoka.edu.in"
+    msg['From'] = sender_email_ID
+    msg['To'] = email_ID
     msg.add_header('Content-Type','text/html')
     msg.set_payload(message)
 
     s = smtplib.SMTP('smtp.gmail.com', 587)
     s.starttls()
-    s.login("systems.quadcore@gmail.com",
-            "Quadcore00")
+    s.login(sender_email_ID,
+            sender_email_ID_password)
     s.sendmail(msg['From'], [msg['To']], msg.as_string())
     s.quit()
-
-# sendEmail("YVJ", [1,2,3,4])

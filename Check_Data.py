@@ -21,7 +21,7 @@ def check_Data(username):
         return False
     else:
         data = []
-        data.append(file.readline())
+        data.append(file.readline()[:-1])
         data.append(file.readline())
         file.close()
         return data
