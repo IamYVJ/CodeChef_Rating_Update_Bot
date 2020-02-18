@@ -28,11 +28,11 @@ def check(username, extraction_method, email_ID, sender_email_ID, sender_email_I
         write_Data(username, data_new)
         data = data_new + ['NA', 'NA']
         sendEmail(username, data, email_ID, sender_email_ID, sender_email_ID_password)
-        print("Initial Data Updated for {} with ratings {} and {}".format(username, data_new[0], data_new[1]))
+        print("Initial Data Updated for {} with Ratings {} and {}".format(username, data_new[0], data_new[1]))
         return False
     else:
         if data_old==data_new:
-            print("No Change In Data for {}".format(username))
+            print("No Change In Data for {} with Ratings {} and {}".format(username, data_new[0], data_new[1]))
             return False
         else:
             write_Data(username, data_new)
@@ -60,7 +60,9 @@ def start_print(username):
     print("                              YVJ Systems")
     print()
     if username!="":
-        print("                        CodeChef User: {}".format(username))
+        for i in range(0, 31-len(username)):
+            print(" ", end = "")
+        print("CodeChef User: {}".format(username))
         print()
 
 def driver():
