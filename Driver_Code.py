@@ -16,31 +16,34 @@ def check(username, extraction_method, email_ID, sender_email_ID, sender_email_I
             data_new = get_source_selenium(username)
         elif extraction_method==1:
             data_new = get_source_requests(username)
-        data_new = getData(data_new)
-        if len(data_new)>0:
+        data_new = getData(data_new)[0]
+        if len(data_new)<1:
             if i>5:
                 print("Failed to get Data for {}".format(username))
                 return False
+            else:
+                i+=1
+                continue
+        else:
             break
-        i += 1
     data_old = check_Data(username)
     if data_old==False:
         write_Data(username, data_new)
-        data = data_new + ['NA', 'NA']
+        data = [data_new] + ['NA']
         sendEmail(username, data, email_ID, sender_email_ID, sender_email_ID_password)
-        print("Initial Data Updated for {} with Ratings {} and {}".format(username, data_new[0], data_new[1]))
+        print("Initial Data Updated for {} with Rating {}".format(username, data_new))
         return False
     else:
         if data_old==data_new:
-            print("No Change In Data for {} with Ratings {} and {}".format(username, data_new[0], data_new[1]))
+            print("No Change In Data for {} with Rating {}".format(username, data_new))
             return False
         else:
             write_Data(username, data_new)
-            data = data_new.extend(data_old)
+            data = [data_new] + [data_old]
             sendEmail(username, data, email_ID, sender_email_ID, sender_email_ID_password)
-            print("Data Updated for {}", username)
-            print("Old Ratings: {} | {}".format(data_old[0], data_old[1]))
-            print("New Ratings: {} | {}".format(data_new[0], data_new[1]))
+            print("Data Updated for {}".format(username))
+            print("Old Rating: {}".format(data_old))
+            print("New Rating: {}".format(data_new))
             return True
 
 def print_time():

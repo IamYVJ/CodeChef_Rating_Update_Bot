@@ -20,8 +20,6 @@ def check_Data(username):
     except:
         return False
     else:
-        data = []
-        data.append(file.readline()[:-1])
-        data.append(file.readline())
+        data = int(file.readline())
         file.close()
         return data

@@ -20,8 +20,6 @@ def write_Data(username, data):
     except:
         return False
     finally:
-        file.write(data[0])
-        file.write("\n")
-        file.write(data[1])
+        file.write(data)
         file.close()
         return True
